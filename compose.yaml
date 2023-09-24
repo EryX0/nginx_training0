@@ -1,0 +1,23 @@
+version: "3"
+services:
+  2048-game:
+    build:
+      context: ./2048
+    container_name: 2048-game
+    tty: true
+  
+  nestjs:
+    build:
+      context: ./nestjs
+    container_name: nestjs
+    tty: true
+
+  nginx:
+    image: nginx:1.25.2-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    container_name: nginx
+    ports:
+      - 80:80
+    tty: true
+    
